@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>User Events</h1>
+  <div>
+  <%@user.attended_events.each do |event| %>
+    <h3>
+      <%= link_to event.name, event_path(event) %>
+    </h3>
+     <h5>
+      Date :
+      <%=event.event_date %>
+     </h5>
+  <%end %>
+  </div>
+</div>
+

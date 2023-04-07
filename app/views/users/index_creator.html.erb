@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Events</h1>
+  <% @creator.each do | creators|%>
+    <div class="event">
+      <h3><%= creators.email %></h3>
+      <% creators.events.each do |event| %>
+        <%=event.name %>
+
+      <%end%>
+    </div>
+  <%end %>
+</div>

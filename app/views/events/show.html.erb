@@ -1,0 +1,53 @@
+<div class="container rounded-3 border border-dark" style="width: 50rem;">
+  <span class="">
+      <div class="text-center">
+        <h3>
+          <%= @event.name %>
+        </h3>
+      </div>
+      <div class="">
+        <h5>Host : </h5>
+        <div class="text-center">
+          <%= @event.creator.email %>
+        </div>
+      </div>
+      <div class="">
+        <h5>Location : </h5>
+        <div class="text-center">
+          <%= @event.lacation %>
+        </div>
+      </div>
+      <div class="">
+        <h5>Date : </h5>
+        <div class="text-center">
+          <%= @event.event_date.strftime("%m/%d/%Y") %>
+        </div>
+      </div>
+
+      <div class="">
+        <h5>Attendees : </h5>
+
+        <%flag=false%>
+        <div>
+          <%@event.attendees.each do |a|%>
+            <%if current_user.email ==a.email %>
+              <% flag=true%>
+            <%end%>
+            <div class="text-center">
+              <%=a.email %>
+            </div>
+          <%end%>
+        </div>
+        <%if flag!= true%>
+          <div class="text-center">
+            <%= button_to "Attend",attendaces_path(event_id:@event.id),class: 'btn btn-primary'%>
+          </div>
+        <%else%>
+          <div class="text-center">
+            <%= button_to "Attended",attendaces_destroy_path(event_id:@event.id),method: :delete, class: 'btn btn-danger'%>
+          </div>
+        <%end%>
+      </div>
+  </span>
+</div>
+
